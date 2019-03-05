@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keyvault-demo
+spec:
+  selector:
+    matchLabels:
+      app: keyvault-demo
+  template:
+    metadata:
+      labels:
+        app: keyvault-demo
+        aadpodidbinding: aad-demo-app
+    spec:
+      containers:
+      - name: keyvault-demo
+        image: $ACR_NAME.azurecr.io/keyvault-demo:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keyvault-demo
+  labels:
+    name: keyvault-demo
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 80
+  selector:
+    app: keyvault-demo

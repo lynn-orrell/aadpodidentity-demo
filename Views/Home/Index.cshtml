@@ -1,0 +1,28 @@
+﻿@model aadpodidentity_demo.Models.SecretsModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h2>Sssshhhhh! Here are the secrets!</h2>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Secret1)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Secret1)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-6">
+            @Html.DisplayNameFor(model => model.Secret2)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Secret2)
+        </dd>
+    </dl>
+    <p style="margin-top: 50px">Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
