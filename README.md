@@ -4,22 +4,22 @@ Note: Variable values that begin with __ (two underscores) should be populated f
 
 ## Create AKS Cluster
 
-export AKS_RESOURCE_GROUP=[AKS_RESOURCE_GROUP]
-export LOCATION=westus
-export AKS_CLUSTER_NAME=[AKS_CLUSTER_NAME]
-export ACR_NAME=[ACR_NAME]
-export KEYVAULT_NAME=[KEYVAULT_NAME]
+`export AKS_RESOURCE_GROUP=[AKS_RESOURCE_GROUP]`  
+`export LOCATION=westus`  
+`export AKS_CLUSTER_NAME=[AKS_CLUSTER_NAME]`  
+`export ACR_NAME=[ACR_NAME]`  
+`export KEYVAULT_NAME=[KEYVAULT_NAME]`
 
-az ad sp create-for-rbac --skip-assignment
-export SP_APP_ID=[__APP_ID]
-export SP_PASSWORD=[__PASSWORD]
+`az ad sp create-for-rbac --skip-assignment`  
+`export SP_APP_ID=[__APP_ID]`  
+`export SP_PASSWORD=[__PASSWORD]`  
 
-az group create -n $AKS_RESOURCE_GROUP -l $LOCATION
-az aks get-versions -l $LOCATION
-az aks create -n $AKS_CLUSTER_NAME -g $AKS_RESOURCE_GROUP --kubernetes-version [__K8S_VERSION] --service-principal $SP_APP_ID --client-secret $SP_PASSWORD --generate-ssh-keys -l $LOCATION --node-count 3 --enable-addons monitoring --no-wait
-az aks list -o table
-az aks get-credentials -n $AKS_CLUSTER_NAME -g $AKS_RESOURCE_GROUP
-k get nodes
+`az group create -n $AKS_RESOURCE_GROUP -l $LOCATION`  
+`az aks get-versions -l $LOCATION`  
+`az aks create -n $AKS_CLUSTER_NAME -g $AKS_RESOURCE_GROUP --kubernetes-version [__K8S_VERSION] --service-principal $SP_APP_ID --client-secret $SP_PASSWORD --generate-ssh-keys -l $LOCATION --node-count 3 --enable-addons monitoring --no-wait`  
+`az aks list -o table`  
+`az aks get-credentials -n $AKS_CLUSTER_NAME -g $AKS_RESOURCE_GROUP`  
+`kubectl get nodes`
 
 ## Create ACR
 
