@@ -79,7 +79,7 @@ az keyvault set-policy -n $KEYVAULT_NAME --secret-permissions get list --spn $(a
 az role assignment create --role "Managed Identity Operator" --assignee $SP_APP_ID --scope $(az identity show --resource-group $AKS_RESOURCE_GROUP --name $MANAGED_IDENTITY_NAME --query "id" --output tsv)
 ```
 
-## Create the K8s AzureIdentity and AzureIdentityBinding
+## Create the AzureIdentity and AzureIdentityBinding
 
 ```sh
 awk -v MANAGED_IDENTITY_NAME=`echo $MANAGED_IDENTITY_NAME` -v MANAGED_IDENTITY_ID=`az identity show --resource-group $AKS_RESOURCE_GROUP --name $MANAGED_IDENTITY_NAME --query \"id\" --output tsv` -v CLIENT_ID=`az identity show --resource-group $AKS_RESOURCE_GROUP --name $MANAGED_IDENTITY_NAME --query \"clientId\" --output tsv` '{ sub(/\$MANAGED_IDENTITY_NAME/, MANAGED_IDENTITY_NAME); sub(/\$MANAGED_IDENTITY_ID/, MANAGED_IDENTITY_ID); sub(/\$CLIENT_ID/, CLIENT_ID); print }' aad-pod-identity.template.yaml > aad-pod-identity.yaml
