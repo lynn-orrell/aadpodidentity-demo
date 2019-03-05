@@ -111,7 +111,7 @@ awk -v ACR_NAME=`echo $ACR_NAME` '{ sub(/\$ACR_NAME/, ACR_NAME); print }' keyvau
 az acr build --registry $ACR_NAME --image keyvault-demo:latest .
 ```
 
-## Deploy app to K8s
+## Deploy app to AKS
 
 ```sh
 kubectl apply -f ./keyvault-demo.yaml
