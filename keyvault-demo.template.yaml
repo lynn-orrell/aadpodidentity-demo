@@ -15,6 +15,7 @@ spec:
       containers:
       - name: keyvault-demo
         image: $ACR_NAME.azurecr.io/keyvault-demo:latest
+        imagePullPolicy: "Always"
         resources:
           limits:
             memory: "128Mi"
